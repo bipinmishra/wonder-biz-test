@@ -1,0 +1,36 @@
+
+
+.header-wrap{
+    display: flex;
+    align-items: center;
+    button{padding:4px 8px;
+    &:after{display: none;}
+    }
+    padding:5px 15px ;
+    background: #ccc;
+        h5,h6{margin-bottom: 0px;}
+    .dropdown-menu{max-width: 120px; inset:100% auto auto -120px !important;}
+}
+
+.m-r-auto{margin-right:auto;}
+
+.user-profile{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    .user-img{width:40px; height: 40px; border-radius: 50px; overflow: hidden;
+          img{max-width: 40px; }
+    }
+    h6{max-width: 80px; overflow: hidden; margin-left: 5px; text-overflow: ellipsis; font-size: 14px; white-space: nowrap; margin-bottom: 0;}
+}
+
+.ham-burger{
+    span{
+        width: 20px;
+        height: 2px;
+        background-color: #fff;
+        margin: 4px 0;
+        display: block;
+    }
+}
+
