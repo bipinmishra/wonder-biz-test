@@ -2,11 +2,20 @@
 <div class="side-menu-wrap">
     <ul>
         <li><a href="javascript:void(0);">Home</a></li>
-        <li><a href="javascript:void(0);">Inner Menu 
-                <ul>
-                    <li><a href="javascript:void(0);">Home Inner</a></li>
+        <li class="submenu"[ngClass]="aboutOpen ? 'open' : ''" (click)="toggleButton('about')"><a href="javascript:void(0);" >About us <img class="down" src="../../../assets/images/down.png" alt=""></a>
+                <ul class="submenu-inner">
+                    <li><a href="javascript:void(0);">Details</a></li>
                 </ul>
-        </a></li>
+        </li>
+        <li class="submenu" [ngClass]="productOpen ? 'open' : ''" (click)="toggleButton('product')"><a href="javascript:void(0);">Product <img class="down" src="../../../assets/images/down.png" alt=""></a>
+            <ul class="submenu-inner">
+                <li><a href="javascript:void(0);">Launched</a></li>
+                <li><a href="javascript:void(0);">Past </a></li>
+                <li><a href="javascript:void(0);">Upcomming </a></li>
+                <li><a href="javascript:void(0);">Geo </a></li>
+                <li><a href="javascript:void(0);">Year Wise </a></li>
+            </ul>
+        </li>
 
     </ul>
 </div>

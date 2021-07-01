@@ -13,6 +13,7 @@ import { CountryMapService } from '../../services/country-map.service';
 import { RestService } from 'src/app/services/rest.service';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -24,34 +25,35 @@ import { ToastrService } from 'ngx-toastr';
 
 export class DashboardComponent implements OnInit {
 
-geoMap;
 
+
+
+//Bar Chart Data ===================
 barChartOptions: ChartOptions = {
   responsive: true,
 };
-
-barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
+barChartLabels: Label[] = [];
 barChartType: ChartType = 'bar';
-
-// barChartLegend = true;
-// barChartPlugins = [];
-
 barChartData: ChartDataSets[] = [
-  { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits' }
+  { data: [], label: 'Launch Over Time' }
 ];
+
+//General Prop  Data ===================
+barCharOverall :Number[] = [];
+barYearOverall :string[] = [];
+geoMap;
 results;
 upcomming :string[] = [];
 past :string[] = [];
 launchpad :string[] = [];;
-
-
-  constructor(private _geoMap : CountryMapService, private _restService : RestService,     private toaster : ToastrService,) { }
+ispageLoaded = false;
+constructor(private _geoMap : CountryMapService, private _restService : RestService,     private toaster : ToastrService,) { }
 
   ngOnInit(): void {
     this._geoMap.__geo.subscribe((data) => { this.geoMap = data });
     // this.generateMap();
     this.getAllLaunch();
-    this.getLaunchPad();
+
     
   }
 
@@ -121,18 +123,16 @@ getAllLaunch(){
   this._restService.getAll('launches').subscribe(
     (data)=>{
      this.results = data;
-     this.results.forEach(element => {
+     this.results.forEach((element, index) => {
         if(element.upcoming === false){
           this.past.push('dd');
         }else{
           this.upcomming.push(element);
         }
-
+        this.barYearOverall.push(element.launch_year);
      });
-      // this.upcomming;
-      // this.past;
-      // this.total
-      console.log(data);
+     this.getLaunchPad();
+     this.creatBarchart();
     },
     (error)=>{
       this.toaster.error(error.error);
@@ -161,10 +161,9 @@ getLaunchPad(){
  );
 }
 
-  ConvertString(value){
+ConvertString(value){
     return parseFloat(value)
-  }
-
+}
 
 closestLocation(targetLocation, locationData) {
     function vectorDistance(dx, dy) {
@@ -185,6 +184,18 @@ closestLocation(targetLocation, locationData) {
     });
 } 
 
+creatBarchart(){
+  var a = this.barYearOverall;
+  var map = a.reduce(function(obj, b) {
+    obj[b] = ++obj[b] || 1;
+    return obj;
+  }, {});
+  for (const property in map) {
+      this.barChartLabels.push(property);
+      this.barChartData[0].data.push(map[property])
+  }
+  this.ispageLoaded = true;
+}
 
   
 }

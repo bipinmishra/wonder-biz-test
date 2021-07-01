@@ -1,12 +1,32 @@
 
-.side-menu-wrap{
+.side-menu-wrap{position: relative; z-index: 1;
     max-width: 250px;
-    background: #ccc;
+    background: #6c757d;
     ul{padding: 0; margin: 0;
     li{display: block;
-        a{display: block; padding: 5px 15px;}
+        a{display: block; font-size: 14px; padding: 5px 15px; background: #556069; color: #fff;
+             margin-bottom: 2px; 
+             text-decoration: none;
+          &:hover{background:#495258;}   
+        }
+       >ul{padding: 0; margin: 0;
+           li{
+               a{display: block; font-size: 12px; padding: 5px 25px; background: #394146;
+                &:hover{background:#272c30;}
+            }
+           }
+       } 
+
+      &.submenu{
+          img{width: 10px; margin-left: 5px; float: right; margin-top: 5px; transform: rotate(0deg); transition: all .5s ease;}
+          .submenu-inner{max-height: 0px; overflow: hidden; opacity: 0; transition: all .5s ease;}
+          &.open{
+              img{transform: rotate(180deg);}
+            .submenu-inner{max-height: 1500px; opacity: 1;}
+          }
+        } 
     }
     }
 
-    height:calc(100vh - 76px);
+    min-height:calc(100vh - 66px);
 }

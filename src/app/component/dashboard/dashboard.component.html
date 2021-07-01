@@ -1,11 +1,33 @@
-<div>
-  <h4>Analytics Dashboard</h4>
+
+
+  <div *ngIf="!ispageLoaded" class="loader-wrapper">
+    <div class="loader">
+        <div class="loadingio-spinner-pulse-sns17qo10ah">
+            <div class="ldio-ozw5eg1wsdl">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="ispageLoaded">
+
+  <div class="d-flex align-items-center">
+    <div class="ham-burger-dark left-menu-trigger mr-4">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+    <h4>Analytics Dashboard</h4>
+  </div>
 
   <div class="card mt-4">
     <div class="card-body">
       <h5 class="mb-3">Launched Dashboard</h5>
       <div class="row">
-        <div class="col">
+        <div class="col-lg mb-4">
           <div class="card bg-success text-light">
             <div class="card-body text-center">
               <h5>{{upcomming?.length}}</h5>
@@ -14,7 +36,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col-lg mb-4">
           <div class="card bg-secondary text-light">
             <div class="card-body text-center">
               <h5>{{past?.length}}</h5>
@@ -23,7 +45,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col-lg">
           <div class="card bg-primary text-light">
             <div class="card-body text-center">
               <h5>{{results?.length}}</h5>
@@ -37,25 +59,23 @@
   </div>
 
   <div class="row mt-4">
-    <div class="col">
+    <div class="col-lg mb-4">
       <div class="card ">
         <div class="card-body text-center">
             <div class="chart-wrapper">
-              <div style="max-width: 450px;">
+              <div>
                 <canvas id="confirmedGeoCanvas"></canvas>
               </div>
             </div>
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col-lg mb-4">
       <div class="card ">
         <div class="card-body text-center">
-            <div style="display: block; max-width: 450px;">
+            <div style="display: block;">
               <div class="chart-wrapper">
                 <canvas baseChart 
-                width="500px"
-                
                 [datasets]="barChartData"
                 [labels]="barChartLabels"
                 [options]="barChartOptions"
@@ -66,7 +86,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col-xl mb-4">
       <div class="card ">
         <div class="card-body text-center">
 
